@@ -8,11 +8,7 @@ import { User } from  '../auth/user.model';
     selector: 'app-answer-form',
     templateUrl: './answer-form.component.html',
     styles: [`
-        form {
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-            margin: 40px auto;
+        form {            
             margin-top: 20px;            
         }
     `]
