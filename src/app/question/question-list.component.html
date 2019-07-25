@@ -1,1 +1,11 @@
-Este es el listado de preguntas
+<mat-list>
+    <mat-list-item *ngFor="let question of questions">
+        <mat-icon *ngIf="question.icon === 'none'" mat-list-icon class="material-icons help">help</mat-icon>
+        <mat-icon *ngIf="question.icon !== 'none'" mat-list-icon>
+                <i class="{{question.icon}}"></i>
+        </mat-icon>
+        <h3 mat-line>{{question.title}}</h3>
+        <p><small>{{question.answers.length}} respuestas - {{question.createdAt | amLocale: 'es' | amTimeAgo }}</small>
+        </p>
+    </mat-list-item>
+</mat-list>
