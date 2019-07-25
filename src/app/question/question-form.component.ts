@@ -14,6 +14,27 @@ import icons from './icons';
     small {
         display: block;
     }
+
+    .enviar {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        background-color: white;
+        border-top: 1px solid #dcdcdc;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .enviar button {
+        width: 70%;
+        
+    }
+
+    .iconos {
+        padding-bottom: 150px;
+    }
     `]
 })
 

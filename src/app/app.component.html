@@ -1,10 +1,11 @@
 <mat-toolbar color="primary">
-    <span>PlatziOverflow2</span>
+    <span [routerLink]="['/']">PlatziOverflow2</span>
     <span class="space"></span>
-    <mat-icon>account_circle</mat-icon>
+    <mat-icon [routerLink]="['/signin']">account_circle</mat-icon>
 </mat-toolbar>
 <!-- <app-question-detail></app-question-detail> -->
 <!-- <app-signin-screen></app-signin-screen> -->
 <!-- <app-signup-screen></app-signup-screen> -->
 <!-- <app-question-list></app-question-list> -->
-<app-question-form></app-question-form>
+<!-- <app-question-form></app-question-form> -->
+<router-outlet></router-outlet>

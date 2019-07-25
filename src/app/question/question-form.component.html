@@ -6,8 +6,7 @@
         <input matInput placeholder="Descripcion" name="description" ngModel required>
     </mat-form-field>
 
-
-    <mat-grid-list cols="3" rowHeight="3:2">
+    <mat-grid-list cols="3" rowHeight="3:2" class="iconos">
         <mat-grid-tile>
             <mat-radio-group [ngModel] name="icon">
                 <mat-radio-button value="none">
@@ -15,8 +14,6 @@
                     <small>Sin Icono</small>
                 </mat-radio-button>
             </mat-radio-group>
-
-
         </mat-grid-tile>
         <mat-grid-tile *ngFor="let icon of icons">
             <mat-radio-group [ngModel] name="icon">
@@ -26,5 +23,7 @@
             </mat-radio-group>
         </mat-grid-tile>
     </mat-grid-list>
-    <button type="submit" mat-raised-button color="accent">Enviar</button>
+    <div class="enviar">
+        <button type="submit" mat-raised-button color="accent">Enviar</button>
+    </div>
 </form>
