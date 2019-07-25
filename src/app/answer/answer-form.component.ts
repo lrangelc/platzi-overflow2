@@ -27,7 +27,7 @@ export class AnswerFormComponent {
             form.value.description,
             this.question,
             new Date(),
-            new User('Paula','Becerra'));
+            new User(null,null,'Paula','Becerra'));
         this.question.answers.unshift(answer);
         form.reset();
     }
