@@ -3,7 +3,12 @@
         <input matInput placeholder="Titulo" name="title" ngModel required>
     </mat-form-field>
     <mat-form-field>
-            <input matInput placeholder="Descripcion" name="description" ngModel required>
-        </mat-form-field>
-        <button type="submit" mat-raised-button color="accent">Enviar</button>
+        <input matInput placeholder="Descripcion" name="description" ngModel required>
+    </mat-form-field>
+    <mat-grid-list cols="3" rowHeight="3:2">
+        <mat-grid-tile *ngFor="let icon of icons">
+            <i mat-list-icon class="devicon devicon-{{icon.name}}-{{getIconVersion(icon)}} colored"></i>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <button type="submit" mat-raised-button color="accent">Enviar</button>
 </form>

@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatRadioModule } from '@angular/material/radio';
 
 const modules = [
     MatCheckboxModule,
@@ -14,7 +16,9 @@ const modules = [
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    MatRadioModule
 ]
 
 @NgModule({
