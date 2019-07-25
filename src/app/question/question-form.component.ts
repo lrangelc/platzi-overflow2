@@ -9,7 +9,12 @@ import icons from './icons';
     styles: [`
     i {
         font-size: 48px;
-    }`]
+    }
+    
+    small {
+        display: block;
+    }
+    `]
 })
 
 export class QuestionFormComponent {
@@ -32,7 +37,7 @@ export class QuestionFormComponent {
             form.value.title,
             form.value.description,
             new Date(),
-            'devicon-krakenjs-plain'
+            form.value.icon
         );
 
         console.log(q);
