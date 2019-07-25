@@ -1,1 +1,9 @@
-Haz una pregunta!
+<form (ngSubmit)="onSubmit(formulario)" #formulario="ngForm">
+    <mat-form-field>
+        <input matInput placeholder="Titulo" name="title" ngModel required>
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput placeholder="Descripcion" name="description" ngModel required>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="accent">Enviar</button>
+</form>
