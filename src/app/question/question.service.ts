@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Question } from './question.model';
+import { Answer } from '../answer/answer.model';
+
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import urljoin from 'url-join';
@@ -10,22 +12,21 @@ import { throwError } from 'rxjs';
 @Injectable()
 
 export class QuestionService {
-    private questionsUrl: string;
+    private questionUrl: string;
 
     constructor(private http: HttpClient) {
-        this.questionsUrl = urljoin(environment.apiUrl, 'questions');
+        this.questionUrl = urljoin(environment.apiUrl, 'questions');
     }
 
     getQuestions(): Promise<void | Question[]> {
-        return this.http.get(this.questionsUrl)
+        return this.http.get(this.questionUrl)
             .toPromise()
             .then(response => JSON.parse(JSON.stringify(response as Question[])))
             .catch(this.handleError);
     }
 
     getQuestion(id): Promise<void | Question> {
-        let url = urljoin(environment.apiUrl, 'question');
-        url = urljoin(url, id);
+        const url = urljoin(this.questionUrl, id);
 
         return this.http.get(url)
             .toPromise()
@@ -36,7 +37,7 @@ export class QuestionService {
     addQuestion(question: Question): Observable<Question> {
         const body = JSON.stringify(question);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post(this.questionsUrl, body, { headers })
+        return this.http.post(this.questionUrl, body, { headers })
             .pipe(
                 map(res => {
                     return res as Question
@@ -44,6 +45,22 @@ export class QuestionService {
                 catchError((error: Response) => throwError(error.json()))
             );
     }
+
+    addAnswer(answer: Answer): Observable<Answer> {
+        const body = JSON.stringify(answer);
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        const url = urljoin(this.questionUrl, answer.question._id.toString(), 'answers');
+
+        return this.http.post(url, body, { headers })
+            .pipe(
+                map(res => {
+                    return res as Answer
+                }),
+                catchError((error: Response) => throwError(error.json()))
+            );
+    }
+
     handleError(error: any) {
         const errMsg = error.message ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';

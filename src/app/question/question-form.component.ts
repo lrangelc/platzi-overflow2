@@ -71,7 +71,8 @@ export class QuestionFormComponent {
             form.value.icon
         );
 
-        this.questionService.addQuestion(q).subscribe(({ _id }) => this.router.navigate(['/questions', _id]));
+        this.questionService.addQuestion(q)
+            .subscribe(({ _id }) => this.router.navigate(['/questions', _id]));
         form.resetForm();
     }
 }
