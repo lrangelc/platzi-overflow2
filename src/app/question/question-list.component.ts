@@ -1,19 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Question } from '../question/question.model';
+import { QuestionService} from './question.service';
 
-const q = new Question(
-    '¿Comó levantar un server apache?',
-    'Facil y sencillo como...',
-    new Date(),
-    'devicon-nodejs-plain'
-);
+// const q = new Question(
+//     '¿Comó levantar un server apache?',
+//     'Facil y sencillo como...',
+//     new Date(),
+//     'devicon-nodejs-plain'
+// );
 
 @Component({
     selector: 'app-question-list',
     templateUrl: './question-list.component.html',
-    styleUrls: ['./question-list.component.css']
+    styleUrls: ['./question-list.component.css'],
+    providers: [QuestionService]
 })
 
-export class QuestionListComponent {
-    questions: Question[] = new Array(15).fill(q);
+export class QuestionListComponent implements OnInit {
+
+    constructor(private questionService:QuestionService){
+
+    }
+
+    // questions: Question[] = new Array(15).fill(q);
+    questions: Question[];
+    loading = true;
+
+    ngOnInit(){
+        this.questionService.getQuestions()
+            .then((questions: Question[]) => {
+                this.questions = questions;
+                this.loading = false;
+            });
+    }
 }
