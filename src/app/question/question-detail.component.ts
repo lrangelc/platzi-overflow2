@@ -24,7 +24,7 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
 
     constructor(private questionService: QuestionService,
         private route: ActivatedRoute) {
-            this.question = new Question('','',new Date(),'');
+            // this.question = new Question('','',new Date(),'');
     }
 
     ngOnInit() {
@@ -37,19 +37,8 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    // XngOnInit() {
-    //     this.sub = this.route.params.subscribe((params) => {
-    //         this.questionService
-    //             .getQuestion(params.id)
-    //             .subscribe((res) => {               
-    //                 this.question = res[0];
-    //                 this.loading = false;
-    //             });
-    //     })
-        
-    // }
 
     ngOnDestroy(){
-        // this.sub.unsubscribe();
+        this.sub.unsubscribe();
     }
 }

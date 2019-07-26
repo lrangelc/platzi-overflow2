@@ -42,3 +42,10 @@ h5 small {
     background-color: white;
     border-top: 1px solid #dcdcdc;
 }
+
+mat-spinner {
+    position: fixed;
+    bottom: 40%;
+    right: 40%;
+    width: 20%;
+}

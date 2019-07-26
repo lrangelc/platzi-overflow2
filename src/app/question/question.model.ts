@@ -1,5 +1,5 @@
 import { Answer } from '../answer/answer.model';
-import { User } from '../auth/user.model';
+// import { User } from '../auth/user.model';
 
 export class Question {
     _id?: string;
@@ -8,7 +8,7 @@ export class Question {
     createdAt?: Date;
     icon?: string;
     answers: Answer[];
-    user?: User;
+    // user?: User;
 
     constructor(title: string,
         description: string,
@@ -21,6 +21,6 @@ export class Question {
         this.createdAt = createdAt;
         this.icon = icon;
         this.answers = [];
-        this.user = new User('','','','');
+        // this.user = new User('','','','');
     }
 }
