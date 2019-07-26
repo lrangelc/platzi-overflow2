@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Question } from './question.model';
+import { User } from '../auth/user.model';
+import { QuestionService } from './question.service';
+import { Router } from '@angular/router';
 import icons from './icons';
 
 @Component({
@@ -35,11 +38,17 @@ import icons from './icons';
     .iconos {
         padding-bottom: 150px;
     }
-    `]
+    `],
+    providers: [QuestionService]
 })
 
 export class QuestionFormComponent {
     icons: Object[] = icons;
+
+    constructor(private questionService: QuestionService,
+        private router: Router) {
+
+    }
 
     getIconVersion(icon: any) {
         let version = '';
@@ -54,6 +63,7 @@ export class QuestionFormComponent {
     }
 
     onSubmit(form: NgForm) {
+        const u = new User('test@test.com', '1234', 'test', 'test');
         const q = new Question(
             form.value.title,
             form.value.description,
@@ -61,6 +71,7 @@ export class QuestionFormComponent {
             form.value.icon
         );
 
-        console.log(q);
+        this.questionService.addQuestion(q).subscribe(({ _id }) => this.router.navigate(['/questions', _id]));
+        form.resetForm();
     }
 }
