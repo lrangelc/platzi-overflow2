@@ -11,17 +11,7 @@ const q = new Question(
 @Component({
     selector: 'app-question-list',
     templateUrl: './question-list.component.html',
-    styles: [`
-      i {
-        font-size: 40px;
-      }
-      
-    mat-icon.help {
-        width 40px !important;
-        height: 40px !important;
-        padding: 0 !important;
-        font-size: 40px !important;
-      }`]
+    styleUrls: ['./question-list.component.css']
 })
 
 export class QuestionListComponent {

@@ -1,0 +1,17 @@
+i {
+    font-size: 40px;
+}
+
+mat-icon.help {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    font-size: 40px !important;
+}
+
+.add-question {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 40px;
+}
