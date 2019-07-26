@@ -1,5 +1,5 @@
 <mat-list>
-    <mat-list-item *ngFor="let question of questions">
+    <mat-list-item *ngFor="let question of questions" [routerLink]="['questions',question._id]">
         <mat-icon *ngIf="question.icon === 'none'" mat-list-icon class="material-icons help">help</mat-icon>
         <mat-icon *ngIf="question.icon !== 'none'" mat-list-icon>
                 <i class="{{question.icon}}"></i>
