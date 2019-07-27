@@ -58,4 +58,10 @@ export class AuthService {
 
         return throwError('something bad happened; please try again later.');
     }
+
+    logout() {
+        localStorage.clear();
+        this.currentUser = null;
+        this.router.navigateByUrl('/');
+    }
 }

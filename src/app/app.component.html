@@ -1,7 +1,23 @@
 <mat-toolbar color="primary">
     <span [routerLink]="['/']">PlatziOverflow2</span>
     <span class="space"></span>
-    <mat-icon [routerLink]="['/signin']">account_circle</mat-icon>
+
+    <button *ngIf="!isLoggedIn()" [routerLink]="['/signin']" mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <div *ngIf="isLoggedIn()">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item disabled>
+                {{fullName()}}
+            </button>
+            <button mat-menu-item (click)="logout()">
+                Cerrar Sesion
+            </button>
+        </mat-menu>
+    </div>
 </mat-toolbar>
 <!-- <app-question-detail></app-question-detail> -->
 <!-- <app-signin-screen></app-signin-screen> -->
