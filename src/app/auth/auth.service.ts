@@ -36,8 +36,20 @@ export class AuthService {
             );
     }
 
+    signup(user: User) {
+        const body = JSON.stringify(user);
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.post(urljoin(this.usersUrl, 'signup'), body, { headers })
+            .pipe(
+                map((response: any) => {
+                    this.login(response);
+                    return response;
+                }),
+                catchError(this.handleError)
+            );
+    }
+
     login = ({ token, userId, firstName, lastName, email }) => {
-        console.log('carja');
         this.currentUser = new User(email, null, firstName, lastName, userId);
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify({ userId, firstName, lastName, email }));
