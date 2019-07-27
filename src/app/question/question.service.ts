@@ -37,12 +37,15 @@ export class QuestionService {
     addQuestion(question: Question): Observable<Question> {
         const body = JSON.stringify(question);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post(this.questionUrl, body, { headers })
+        const url = this.questionUrl + this.getTokeParam();
+
+        return this.http.post(url, body, { headers })
             .pipe(
                 map(res => {
                     return res as Question
                 }),
-                catchError((error: Response) => throwError(error.json()))
+                // catchError((error: Response) => throwError(error.json()))
+                catchError((error: Response) => throwError(error))
             );
     }
 
@@ -55,16 +58,22 @@ export class QuestionService {
         };
         const body = JSON.stringify(a);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
         const url = urljoin(this.questionUrl, answer.question._id.toString(), 'answers');
 
-        return this.http.post(url, body, { headers })
+        return this.http.post(url + this.getTokeParam(), body, { headers })
             .pipe(
                 map(res => {
                     return res as Answer
                 }),
-                catchError((error: Response) => throwError(error.json()))
+                // catchError((error: Response) => throwError(error.json()))
+                catchError((error: Response) => throwError(error))
             );
+    }
+
+    getTokeParam() {
+        const token = localStorage.getItem('token');
+
+        return `?token=${token}`;
     }
 
     handleError(error: any) {
