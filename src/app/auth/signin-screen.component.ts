@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../auth/user.model';
 import { AuthService } from './auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-signin-screen',
@@ -12,7 +13,8 @@ import { AuthService } from './auth.service';
 export class SigninScreenComponent implements OnInit {
     signinForm: FormGroup;
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService,
+        private _snackBar: MatSnackBar) { }
 
     ngOnInit() {
         this.signinForm = new FormGroup({
@@ -34,10 +36,30 @@ export class SigninScreenComponent implements OnInit {
                     console.log('user signin!!!');
                 },
                     err => {
-                        console.log(err);
+                        this.handleError(err);
                     }
                 );
         }
     }
+
+    handleError(err: any) {
+        const { name , message } = err;
+
+        if (name === 'TokenExpiredError') {
+            this.showError('Tu sesion ha expirado');
+        } else if (name === 'JsonWebTokenError'){
+            this.showError('Ha habido un problema con tu sesion');
+        } else {
+            this.showError(message || 'Ha ocurrido un error. Intentalo nuevamente');
+        }
+
+        console.log(err);
+      }
+
+      showError(message: string) {
+        this._snackBar.open(message, 'x', {
+          duration: 2000,
+        });
+      }
 
 }

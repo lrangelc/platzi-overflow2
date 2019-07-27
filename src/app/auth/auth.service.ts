@@ -60,6 +60,13 @@ export class AuthService {
         return localStorage.getItem('token') !== null;
     }
 
+    logout() {
+        localStorage.clear();
+        this.currentUser = null;
+        this.router.navigateByUrl('/');
+    }
+
+   
     private handleError(err: HttpErrorResponse) {
         if (err.error instanceof ErrorEvent) {
             console.error('An error ocurred: ', err.error.message);
@@ -71,9 +78,4 @@ export class AuthService {
         return throwError('something bad happened; please try again later.');
     }
 
-    logout() {
-        localStorage.clear();
-        this.currentUser = null;
-        this.router.navigateByUrl('/');
-    }
 }
