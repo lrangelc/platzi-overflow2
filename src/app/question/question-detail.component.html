@@ -19,7 +19,7 @@
         </mat-card-content>
     </mat-card>
     <div class="answers">
-        <h3>Respuestas</h3>
+        <h3 id="title">Respuestas</h3>
         <ul class="answers-list" *ngIf="question.answers.length > 0">
             <li *ngFor="let answer of question.answers">
                 <h5>{{answer.user.firstName}} {{answer.user.lastName}}

@@ -2,8 +2,8 @@ import { Component, Input, ɵConsole } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Answer } from './answer.model';
 import { Question } from '../question/question.model';
-import { User } from '../auth/user.model';
 import { QuestionService } from '../question/question.service';
+import SweetScroll from 'sweet-scroll';
 
 @Component({
     selector: 'app-answer-form',
@@ -18,8 +18,11 @@ import { QuestionService } from '../question/question.service';
 
 export class AnswerFormComponent {
     @Input() question: Question;
+    sweetScroll: SweetScroll;
 
-    constructor(private questionService: QuestionService) { }
+    constructor(private questionService: QuestionService) {
+        this.sweetScroll = new SweetScroll();
+     }
 
     onSubmit(form: NgForm) {
         // const answer = new Answer(
@@ -28,16 +31,25 @@ export class AnswerFormComponent {
         //     new Date(),
         //     new User(null, null, 'Paula', 'Becerra'));
 
-        const answer = new Answer(
-                form.value.description,
-                this.question);
+        if (form.value.description != null) {
+            let description: string = form.value.description;
+            description = description.trim();
+            if (description.length > 0) {
+                const answer = new Answer(
+                    form.value.description,
+                    this.question);
 
-        this.questionService.addAnswer(answer)
-            .subscribe(
-                a => this.question.answers.unshift(a),
-                error => console.log(error)
-            );
-        // this.question.answers.unshift(answer);
-        form.reset();
+                this.questionService.addAnswer(answer)
+                    .subscribe(
+                        a => {
+                            this.question.answers.unshift(a);
+                            this.sweetScroll.to('#title');
+                        },
+                        error => console.log(error)
+                    );
+                // this.question.answers.unshift(answer);
+                form.reset();
+            }
+        }
     }
 }
