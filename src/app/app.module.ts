@@ -17,6 +17,9 @@ import { SignupScreenComponent } from './auth/signup-screen.component';
 import { QuestionListComponent } from './question/question-list.component';
 import { QuestionFormComponent } from './question/question-form.component';
 
+//Para que pueda utilizarse en toda la app
+import { AuthService } from './auth/auth.service';
+
 import { MomentModule } from 'ngx-moment';
 import { Routing } from './app.routing';
 
@@ -41,7 +44,7 @@ import { Routing } from './app.routing';
     Routing,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

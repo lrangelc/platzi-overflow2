@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Question } from './question.model';
 import { Answer } from '../answer/answer.model';
 
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import urljoin from 'url-join';
 import { Observable } from 'rxjs';
