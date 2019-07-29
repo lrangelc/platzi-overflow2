@@ -4,17 +4,21 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build": "npm run build:client",
+    "build:client": "ng build --configuration=production",
+    "postinstall": "npm run build"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^8.1.2",
     "@angular/cdk": "^8.1.1",
+    "@angular/cli": "~8.1.2",
     "@angular/common": "~8.1.2",
     "@angular/compiler": "~8.1.2",
+    "@angular/compiler-cli": "~8.1.2",
     "@angular/core": "~8.1.2",
     "@angular/forms": "~8.1.2",
     "@angular/material": "^8.1.1",
@@ -26,14 +30,13 @@
     "ngx-moment": "^3.4.0",
     "rxjs": "~6.4.0",
     "sweet-scroll": "^4.0.0",
+    "typescript": "~3.4.3",
     "tslib": "^1.9.0",
     "url-join": "^4.0.1",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.2",
-    "@angular/cli": "~8.1.2",
-    "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
@@ -48,7 +51,6 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "tslint": "~5.15.0"
   }
 }

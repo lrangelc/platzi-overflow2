@@ -1,18 +1,18 @@
 import { Answer } from '../answer/answer.model';
-// import { User } from '../auth/user.model';
+import { User } from '../auth/user.model';
 
 export class Question {
     _id?: string;
     title: string;
     description: string;
-    createdAt?: Date;
+    createdAt?: string;
     icon?: string;
     answers: Answer[];
-    // user?: User;
+    user?: User;
 
     constructor(title: string,
         description: string,
-        createdAt?: Date,
+        createdAt?: string,
         icon?: string
     ) {
         this._id = '1';

@@ -75,7 +75,7 @@ export class QuestionFormComponent implements OnInit{
         const q = new Question(
             form.value.title,
             form.value.description,
-            new Date(),
+            '',
             form.value.icon
         );
 
