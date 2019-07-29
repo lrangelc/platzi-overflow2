@@ -18,8 +18,8 @@ export class QuestionService {
         this.questionUrl = urljoin(environment.apiUrl, 'questions');
     }
 
-    getQuestions(): Promise<void | Question[]> {
-        return this.http.get(this.questionUrl)
+    getQuestions(sort = '-createdAt'): Promise<void | Question[]> {
+        return this.http.get(`${this.questionUrl}?sort=${sort}`)
             .toPromise()
             .then(response => JSON.parse(JSON.stringify(response as Question[])))
             .catch(this.handleError);
