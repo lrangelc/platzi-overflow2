@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://mysterious-mesa-17118.herokuapp.com//api/'
+  apiUrl: 'https://platzi-overflow2-backend.herokuapp.com///api/'
 };
